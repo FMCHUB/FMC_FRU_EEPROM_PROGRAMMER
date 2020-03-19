@@ -1,0 +1,48 @@
+[DefaultInstall]
+CopyINF="CDC_ACM.inf"
+
+[Version]
+Signature="$Windows NT$"
+Class=Ports
+Provider=%PROVIDER%
+CatalogFile=
+DriverVer=19/03/2020,1.0.0.1
+
+[Manufacturer]
+%PROVIDER%=DeviceList, NTx86, NTamd64, NTia64
+
+[SourceDisksNames]
+
+[SourceDisksFiles]
+
+[DestinationDirs]
+DefaultDestDir=12
+
+[DriverInstall]
+Include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=DriverInstall.AddReg
+
+[DriverInstall.Services]
+Include=mdmcpq.inf
+AddService=usbser, 0x00000002, LowerFilter_Service_Inst
+
+[DriverInstall.AddReg]
+HKR,,EnumPropPages32,,"msports.dll,SerialPortPropPageProvider"
+
+[DeviceList]
+%DESCRIPTION%=DriverInstall, USB\VID_16C0&PID_05E1
+
+[DeviceList.NTx86]
+%DESCRIPTION%=DriverInstall, USB\VID_16C0&PID_05E1
+
+[DeviceList.NTamd64]
+%DESCRIPTION%=DriverInstall, USB\VID_16C0&PID_05E1
+
+[DeviceList.NTia64]
+%DESCRIPTION%=DriverInstall, USB\VID_16C0&PID_05E1
+
+[Strings]
+PROVIDER="IAM Electronic GmbH"
+DESCRIPTION="FMC FRU EEPROM Programmer"
+PRODUCT="FMC FRU EEPROM Programmer"
